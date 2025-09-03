@@ -1,19 +1,11 @@
-/**
- * Point d'entrée de notre API Vercel.
- * Agit comme un proxy sécurisé entre le site et Google Sheets.
- */
 export default async function handler(req, res) {
   // Gère la requête "pre-flight" CORS des navigateurs
   if (req.method === 'OPTIONS') {
-    res.setHeader('Access-Control-Allow-Origin', '*'); // Pour le dev, plus tard à changer pour votre domaine
+    res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     return res.status(200).end();
   }
-
-  // Autorise les requêtes de n'importe quelle origine.
-  // En production, il est recommandé de remplacer '*' par votre nom de domaine pour plus de sécurité
-  // ex: res.setHeader('Access-Control-Allow-Origin', 'https://www.votre-domaine.com');
   res.setHeader('Access-Control-Allow-Origin', '*');
 
   // On n'accepte que les requêtes POST
@@ -21,15 +13,15 @@ export default async function handler(req, res) {
     return res.status(405).json({ status: 'error', message: 'Méthode non autorisée' });
   }
 
-  try {
-    // On vérifie que la variable d'environnement avec l'URL secrète est bien définie sur Vercel
-    const googleScriptUrl = process.env.GOOGLE_SCRIPT_URL;
-    if (!googleScriptUrl) {
-      console.error('La variable d\'environnement GOOGLE_SCRIPT_URL n\'est pas définie.');
-      return res.status(500).json({ status: 'error', message: 'Erreur de configuration du serveur.' });
-    }
+  // On récupère l'URL secrète depuis les variables d'environnement de Vercel
+  const googleScriptUrl = process.env.GOOGLE_SCRIPT_URL;
+  if (!googleScriptUrl) {
+    console.error('La variable d\'environnement GOOGLE_SCRIPT_URL n\'est pas définie.');
+    return res.status(500).json({ status: 'error', message: 'Erreur de configuration du serveur.' });
+  }
 
-    // On relaie les données du formulaire vers le script Google en utilisant fetch
+  try {
+    // On relaie la demande au script Google avec les données du formulaire
     const response = await fetch(googleScriptUrl, {
       method: 'POST',
       headers: {
@@ -40,15 +32,25 @@ export default async function handler(req, res) {
     });
 
     if (!response.ok) {
-      throw new Error(`La réponse de Google Script n'est pas OK : ${response.statusText}`);
+      throw new Error(`Erreur de la part du script Google : ${response.statusText}`);
     }
 
-    // On attend la réponse de Google Script et on la renvoie au frontend
     const googleResponse = await response.json();
-    return res.status(200).json(googleResponse);
+
+    // ==================================================================
+    // == LA CORRECTION EST ICI ==
+    // On vérifie la réponse de Google et on la formate pour le frontend.
+    // ==================================================================
+    if (googleResponse.result === 'success') {
+      // Si Google dit "success", on renvoie le format que le formulaire attend.
+      res.status(200).json({ status: 'success', message: 'Données enregistrées.' });
+    } else {
+      // Si Google renvoie une erreur, on la transmet.
+      throw new Error(googleResponse.message || 'Une erreur est survenue lors de l\'enregistrement.');
+    }
 
   } catch (error) {
-    console.error('Erreur dans la fonction serverless:', error);
-    return res.status(500).json({ status: 'error', message: 'Échec de la communication avec le service de données.' });
+    console.error("Erreur dans l'API /api/send:", error);
+    res.status(500).json({ status: 'error', message: error.message || 'Une erreur est survenue sur le serveur.' });
   }
 }
