@@ -1,0 +1,54 @@
+.trustBar {
+  /* CORRECTION #2 : Retour au fond gris clair */
+  background-color: var(--light-gray-color);
+  padding: 40px 0;
+  overflow: hidden; /* Indispensable pour cacher ce qui dépasse */
+  position: relative;
+}
+
+.title {
+  text-align: center;
+  font-weight: 500;
+  color: #7f8c8d;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 0.9em;
+}
+
+/* On n'a plus besoin de ce conteneur, on simplifie */
+.logosContainer {
+  /* Vide */
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    /* CORRECTION #3 : Assure le défilement continu sans trou */
+    transform: translateX(-50%);
+  }
+}
+
+.logosSlide {
+  /* CORRECTION #3 : Simplification pour une animation robuste */
+  display: inline-block; /* Garantit que la largeur est bien calculée */
+  white-space: nowrap; /* Force les logos à rester sur une seule ligne */
+  animation: scroll 40s linear infinite;
+}
+
+.logosSlide img {
+  /* CORRECTION #1 : Retour à la taille de 80px */
+  height: 80px;
+  margin: 0 40px;
+  vertical-align: middle;
+  /* Maintien des effets de la version précédente */
+  opacity: 0.8;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.logosSlide img:hover {
+  opacity: 1;
+  transform: scale(1.15);
+}

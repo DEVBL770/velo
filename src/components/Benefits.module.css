@@ -1,0 +1,71 @@
+/* STYLE DE L'ICÔNE AMÉLIORÉ : Inspiré par ecovelocargo.com */
+.benefits {
+  background-color: #fff;
+}
+
+.sectionTitle {
+  color: var(--dark-color);
+  margin-bottom: 60px;
+}
+
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.benefitCard {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: var(--border-radius);
+  text-align: center;
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.benefitCard:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow);
+}
+
+.iconWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px; /* Cercle plus grand */
+  height: 90px;
+  border-radius: 50%;
+  background-color: #eaf5fd; /* Fond bleu très clair pour l'icône */
+  margin-bottom: 25px;
+  transition: background-color 0.3s ease;
+}
+
+.benefitCard:hover .iconWrapper {
+  background-color: var(--primary-color); /* Le fond devient bleu au survol */
+}
+
+.iconWrapper svg {
+  width: 45px; /* Icône plus grande */
+  height: 45px;
+  color: var(--primary-color);
+  transition: color 0.3s ease;
+}
+
+.benefitCard:hover .iconWrapper svg {
+  color: #fff; /* L'icône devient blanche au survol */
+}
+
+.cardTitle {
+  font-size: 1.4em;
+  margin-bottom: 15px;
+  color: var(--dark-color);
+}
+
+.cardDescription {
+  font-size: 1em;
+  line-height: 1.6;
+  color: var(--text-color);
+}

@@ -1,0 +1,171 @@
+.howItWorks {
+  background-color: var(--light-gray-color);
+  padding: 100px 0;
+}
+
+.sectionTitle {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Ligne verticale de la timeline (syntaxe corrigée) */
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 3px;
+  background-color: var(--border-color);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -1.5px;
+  z-index: 1;
+}
+
+.timelineItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+/* Fait alterner le côté du contenu */
+.timelineItem:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.timelineContent, .timelineVisual {
+  width: 45%;
+}
+
+.timelineContent {
+  padding: 25px 30px;
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  position: relative;
+}
+
+/* Flèche décorative pointant vers la timeline (syntaxe corrigée) */
+.timelineItem:nth-child(odd) .timelineContent::after {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 28px;
+  width: 0;
+  z-index: 1;
+  right: -15px;
+  border: medium solid white;
+  border-width: 15px 0 15px 15px;
+  border-color: transparent transparent transparent white;
+}
+.timelineItem:nth-child(even) .timelineContent::after {
+  content: " ";
+  height: 0;
+  position: absolute;
+  top: 28px;
+  width: 0;
+  z-index: 1;
+  left: -15px;
+  border: medium solid white;
+  border-width: 15px 15px 15px 0;
+  border-color: transparent white transparent transparent;
+}
+
+.stepNumber {
+  position: absolute;
+  top: -25px;
+  left: 30px;
+  font-size: 3em;
+  font-weight: 700;
+  color: #f0f0f0; /* Couleur plus subtile */
+  z-index: -1;
+}
+
+.stepTitle {
+  font-size: 1.5em;
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: var(--dark-color);
+}
+
+.timelineVisual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  width: 100px;
+  height: 100px;
+}
+
+/* ======================================================= */
+/* ====== SECTION RESPONSIVE ENTIÈREMENT CORRIGÉE ====== */
+/* ======================================================= */
+@media (max-width: 768px) {
+  /* On déplace la barre à gauche */
+  .timeline::after {
+    left: 31px;
+  }
+
+  /* Chaque item n'est plus en flex alterné */
+  .timelineItem {
+    display: block; /* Change le display pour un layout simple */
+    margin-bottom: 40px;
+  }
+  
+  /* Les côtés pair/impair n'ont plus de direction inversée */
+  .timelineItem:nth-child(even) {
+    flex-direction: initial;
+  }
+
+  /* Le contenu prend toute la largeur disponible avec un décalage */
+  .timelineContent {
+    width: auto;
+    margin-left: 70px; /* Espace pour la barre et l'icône */
+  }
+
+  /* La partie visuelle (icône) est retirée du flux et positionnée sur la barre */
+  .timelineVisual {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    left: 31px; /* Aligné sur la barre */
+    top: 0;
+    transform: translateX(-50%); /* Centré parfaitement sur la barre */
+    background-color: var(--light-gray-color); /* Pour cacher la barre derrière l'icône */
+    border-radius: 50%;
+    z-index: 3;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 3px solid var(--border-color);
+  }
+
+  /* L'icône à l'intérieur est plus petite */
+  .icon {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* On cache la flèche décorative, inutile sur mobile */
+  .timelineItem:nth-child(odd) .timelineContent::after,
+  .timelineItem:nth-child(even) .timelineContent::after {
+    display: none;
+  }
+  
+  .stepNumber {
+    font-size: 2.5em;
+    top: 5px;
+    left: 10px;
+  }
+}

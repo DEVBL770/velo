@@ -1,0 +1,124 @@
+.hero {
+  padding-top: 80px; /* Légèrement moins de padding pour compacter */
+  padding-bottom: 80px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/fond.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  display: flex;
+  align-items: center;
+  min-height: 70vh; /* Hauteur minimale légèrement réduite */
+}
+
+.heroContent {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr; /* Balance ajustée pour le formulaire */
+  gap: 30px; /* Écart réduit */
+  align-items: center;
+  max-width: var(--container-width); /* Utilise la variable globale */
+  margin: 0 auto; /* Centre le contenu */
+}
+
+.leftPanel {
+  /* Pas de styles spécifiques nécessaires ici pour l'instant */
+}
+
+.rightPanel {
+  /* Pas de styles spécifiques nécessaires ici pour l'instant */
+}
+
+.title {
+  color: white;
+  font-size: 3.5em; /* Taille du titre légèrement réduite sur desktop */
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 20px; /* Marge réduite */
+}
+
+.subtitle {
+  font-size: 1.2em; /* Taille du sous-titre légèrement réduite */
+  line-height: 1.6; /* Ligne plus serrée */
+  margin-bottom: 30px; /* Marge réduite */
+  opacity: 0.95;
+}
+
+.benefitsList {
+  list-style: none;
+  padding: 0;
+  font-size: 1.1em; /* Taille de la liste réduite */
+}
+
+.benefitsList li {
+  margin-bottom: 12px; /* Marge réduite entre les éléments */
+  display: flex;
+  align-items: flex-start; /* Aligne le check en haut du texte */
+}
+
+.check {
+  color: var(--primary-color);
+  font-weight: bold;
+  margin-right: 10px; /* Marge réduite */
+  font-size: 1.3em; /* Checkmark légèrement réduit */
+  line-height: 1; /* Assure que le check ne prend pas trop de hauteur */
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .hero {
+    min-height: unset;
+    padding: 70px 0; /* Padding adapté */
+  }
+  .heroContent {
+    grid-template-columns: 1fr; /* Une seule colonne sur les tablettes */
+    gap: 30px; /* Écart ajusté */
+    text-align: center; /* Centre le texte sur tablette */
+  }
+  .leftPanel, .rightPanel {
+    width: 100%;
+  }
+  .title {
+    font-size: 2.8em; /* Taille du titre ajustée pour tablette */
+    line-height: 1.15;
+  }
+  .subtitle {
+    font-size: 1.1em; /* Taille du sous-titre ajustée */
+    margin-bottom: 25px;
+  }
+  .benefitsList {
+    font-size: 1em;
+    padding-left: 0; /* Pas de padding gauche */
+    width: fit-content; /* S'adapte au contenu */
+    margin: 0 auto 30px auto; /* Centre la liste */
+  }
+  .benefitsList li {
+    justify-content: flex-start; /* Aligne les checks à gauche */
+    text-align: left; /* Aligne le texte à gauche */
+  }
+  .rightPanel {
+    margin-top: 0; /* Retire la marge si présente */
+  }
+}
+
+@media (max-width: 576px) {
+  .hero {
+    padding: 60px 0;
+  }
+  .title {
+    font-size: 2.2em; /* Taille du titre pour mobile */
+    margin-bottom: 15px;
+  }
+  .subtitle {
+    font-size: 1em; /* Taille du sous-titre pour mobile */
+    margin-bottom: 20px;
+  }
+  .benefitsList {
+    font-size: 0.95em;
+  }
+  .benefitsList li {
+    margin-bottom: 10px;
+  }
+  .check {
+    font-size: 1.2em;
+    margin-right: 8px;
+  }
+}

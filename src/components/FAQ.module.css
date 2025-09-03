@@ -1,0 +1,104 @@
+/* PASSAGE EN 2 COLONNES : Inspiré par ecovelocargo.com */
+.faq {
+  background-color: var(--light-gray-color);
+}
+
+.sectionTitle {
+  color: var(--dark-color);
+  margin-bottom: 50px;
+}
+
+.faqContainer {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Deux colonnes de taille égale */
+  gap: 25px; /* Espace entre les colonnes */
+}
+
+.faqItem {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  background-color: #fff;
+  /* La bordure inférieure est retirée, chaque item est maintenant une carte */
+}
+
+.faqQuestion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 20px 25px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-family);
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--dark-color);
+  transition: background-color 0.2s ease;
+}
+
+.faqQuestion:hover {
+  background-color: #fdfdfd;
+}
+
+.faqIcon {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  transition: transform 0.3s ease-in-out;
+  flex-shrink: 0;
+  margin-left: 20px;
+}
+
+.faqIcon::before,
+.faqIcon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.faqIcon::after {
+  transform: rotate(90deg);
+}
+
+.faqIcon.open {
+  transform: rotate(135deg);
+}
+
+.faqAnswerWrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out;
+}
+
+.faqAnswerWrapper.open {
+  max-height: 300px;
+}
+
+.faqAnswer {
+  padding: 0 25px 20px 25px;
+  border-top: 1px solid var(--border-color);
+  margin: 0 25px;
+}
+
+.faqAnswer p {
+  margin: 20px 0 0 0;
+  color: var(--text-color);
+  line-height: 1.8;
+}
+
+/* Responsive pour la FAQ */
+@media (max-width: 992px) {
+  .faqContainer {
+    grid-template-columns: 1fr; /* Une seule colonne sur tablette et mobile */
+  }
+}

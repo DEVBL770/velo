@@ -1,0 +1,62 @@
+:root {
+  /* Palette de couleurs inspirée de cargoecolo.fr */
+  --primary-color: #3498db; /* Un bleu professionnel et rassurant */
+  --primary-hover-color: #2980b9;
+  --dark-color: #2c3e50;    /* Bleu-gris très foncé pour les titres */
+  --text-color: #555;       /* Gris moyen pour le corps du texte, plus doux */
+  --light-gray-color: #f8f9fa; /* Fond de section très clair, presque blanc */
+  --background-color: #ffffff;
+  --border-color: #dee2e6;
+  --footer-bg-color: #343a40; /* Gris foncé pour le footer */
+
+  /* Typographie et espacement */
+  --font-family: 'Inter', sans-serif;
+  --container-width: 1140px;
+  --border-radius: 8px; /* Bordures légèrement moins arrondies */
+  --shadow: 0 5px 15px rgba(0, 0, 0, 0.07); /* Ombre très subtile */
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  color: var(--text-color);
+  background-color: var(--background-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.7; /* Ligne plus aérée pour la lisibilité */
+}
+
+h1, h2, h3, h4 {
+  color: var(--dark-color);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+h2 {
+  font-size: 2.5em;
+  text-align: center;
+  margin-bottom: 50px;
+  font-weight: 600;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+section {
+  padding: 90px 0;
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 60px 0;
+  }
+  h2 {
+    font-size: 2em;
+    margin-bottom: 30px;
+  }
+}

@@ -1,0 +1,82 @@
+.footer {
+  background-color: var(--footer-bg-color);
+  color: #adb5bd; /* Gris clair pour le texte */
+  padding-top: 70px;
+}
+
+.footerContent {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 50px;
+  padding-bottom: 60px;
+}
+
+.footerColumn {
+  font-size: 0.95em;
+}
+
+.footerLogo {
+  height: 150px;
+  margin-bottom: 10px;
+  /* Si votre logo est un SVG, vous pouvez forcer sa couleur */
+  filter: brightness(0) invert(1); 
+}
+
+.description {
+  line-height: 1.8;
+  max-width: 350px;
+}
+
+.columnTitle {
+  color: #fff;
+  font-size: 1.2em;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.footerLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerLinks li {
+  margin-bottom: 12px;
+}
+
+.footerLinks a {
+  color: #adb5bd;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footerLinks a:hover {
+  color: #fff;
+}
+
+.copyrightBar {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 20px 0;
+  text-align: center;
+}
+
+.copyrightBar p {
+  margin: 0;
+  font-size: 0.9em;
+}
+
+@media (max-width: 768px) {
+  .footerContent {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #logo-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
