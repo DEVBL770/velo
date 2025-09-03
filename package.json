@@ -15,8 +15,9 @@
     "react-dom": "^19.1.1"
   },
   "devDependencies": {
+    "@prerenderer/renderer-jsdom": "^0.3.0", // <-- NOUVELLE LIGNE
     "@vitejs/plugin-react": "^5.0.0",
     "vite": "^7.1.2",
-    "vite-plugin-prerender": "^1.0.1" // MODIFIÉ : Le nom du paquet est corrigé ici
+    "vite-plugin-prerender": "^1.0.1"
   }
 }
