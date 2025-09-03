@@ -7,7 +7,7 @@ const Hero = () => {
     <section id="form-section" className={styles.hero}>
       <div className={`${styles.heroContent} container`}>
         <div className={styles.leftPanel} data-aos="fade-up">
-          <h1 className={styles.title}>Votre Vélo Cargo Électrique à 1€ en Martinique.</h1>
+          <h1 className={styles.title}>Votre Vélo Cargo Électrique à 1€</h1>
           <p className={styles.subtitle}>
             Bénéficiez du dispositif CEE : financez votre mobilité durable, réduisez vos coûts et transformez vos trajets quotidiens.
           </p>
